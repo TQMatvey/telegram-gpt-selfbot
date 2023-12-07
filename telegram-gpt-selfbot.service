@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=your_username
-WorkingDirectory=/path/to/gpt-selfbot
-ExecStart=/usr/bin/python3 /path/to/gpt-selfbot/bot.py
+WorkingDirectory=/path/to/telegram-gpt-selfbot
+ExecStart=/usr/bin/python3 /path/to/telegram-gpt-selfbot/bot.py
 Restart=on-failure
 
 [Install]

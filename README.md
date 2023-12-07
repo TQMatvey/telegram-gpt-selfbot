@@ -9,7 +9,7 @@
   ```shell
   pip3 install -r requirements.txt
   ```
-  
+
 - copy and adapt .env
   ```shell
   cp .env.example .env
@@ -24,15 +24,15 @@
   python3 bot.py
   ```
   Now just follow Pyrogram's login procedure
-  
+
 - adapt and copy Systemd service (for persistent deployment)
-  - edit `selfbot-gpt.service`
+  - edit `telegram-gpt-selfbot.service`
     change `User` field to your Linux username
     change `WorkingDirectory` to where you cloned the current repository
     change `ExecStart` to where the bot.py is located in the cloned repositort
   - copy the service and enable it
     ```shell
-    sudo cp selfbot-gpt.service /etc/systemd/system/
-    sudo systemctl enable selfbot-gpt.service
-    sudo systemctl start selfbot-gpt.service
+    sudo cp telegram-gpt-selfbot.service /etc/systemd/system/
+    sudo systemctl enable telegram-gpt-selfbot.service
+    sudo systemctl start telegram-gpt-selfbot.service
     ```
