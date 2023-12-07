@@ -50,7 +50,7 @@ def handle_message(client, message):
         interim_message = app.send_message(message.chat.id, 'Люблино Работаем...', reply_to_message_id=message.id)
 
         response = ai.chat.completions.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4-1106-preview",
             messages=message_log,
             max_tokens=4096,
             temperature=temp
@@ -65,7 +65,7 @@ def handle_message(client, message):
         interim_message = app.send_message(message.chat.id, 'Люблино Работаем...', reply_to_message_id=message.id)
 
         response = ai.chat.completions.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4-1106-preview",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=4096,
             temperature=temp
