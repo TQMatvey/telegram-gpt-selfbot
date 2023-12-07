@@ -60,6 +60,21 @@ def handle_message(client, message):
         final_text = f'{response_text}\n\nОтвет Сгенерирован ИИ (GPT-4)'
         app.edit_message_text(interim_message.chat.id, interim_message.id, final_text)
 
+    elif '?onegpt' in message.text:
+        prompt = message.text.lstrip("?onegpt")
+        interim_message = app.send_message(message.chat.id, 'Люблино Работаем...', reply_to_message_id=message.id)
+
+        response = ai.chat.completions.create(
+            model="gpt-4-vision-preview",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=4096,
+            temperature=temp
+        )
+        response_text = response.choices[0].message.content if response.choices else 'No response generated.'
+
+        final_text = f'{response_text}\n\nОтвет Сгенерирован ИИ (GPT-4)'
+        app.edit_message_text(interim_message.chat.id, interim_message.id, final_text)
+
     elif '[]temp' in message.text:
         new_temp = float(message.text.lstrip('[]temp'))
         temp = new_temp
