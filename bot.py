@@ -38,6 +38,10 @@ def handle_message(client, message):
     if message.text is None or message.forward_from:
         return
 
+    # Only owner can use it
+    if not message.from_user.id == admin_id:
+        return
+
     # Process commands
     if '?gpt' in message.text:
         trim_message_log()
@@ -56,7 +60,7 @@ def handle_message(client, message):
         final_text = f'{response_text}\n\nОтвет Сгенерирован ИИ (GPT-4)'
         app.edit_message_text(interim_message.chat.id, interim_message.id, final_text)
 
-    elif '[]temp' in message.text and message.from_user.id == admin_id:
+    elif '[]temp' in message.text:
         new_temp = float(message.text.lstrip('[]temp'))
         temp = new_temp
         app.send_message(message.chat.id, f'Температура поставлена на {temp}.', reply_to_message_id=message.id)
@@ -64,7 +68,7 @@ def handle_message(client, message):
     elif '[]wtemp' in message.text:
         app.send_message(message.chat.id, f'Нынешная Температура: {temp}.', reply_to_message_id=message.id)
 
-    elif '[]reset' in message.text and message.from_user.id == admin_id:
+    elif '[]reset' in message.text:
         message_log = []
         app.send_message(message.chat.id, 'История Моего Браузера Очищена. <3', reply_to_message_id=message.id)
 
